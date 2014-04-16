@@ -1,0 +1,29 @@
+- name: Download macports
+  get_url: url=https://distfiles.macports.org/MacPorts/MacPorts-{{ ports_version }}-Mavericks.pkg dest=/Users/marius/Downloads/MacPorts-{{ ports_version }}-Mavericks.pkg
+
+- name: Install macports
+  command: sudo installer -pkg /Users/marius/Downloads/MacPorts-{{ ports_version }}-Mavericks.pkg -target /
+
+- name: Update macports and install the required packages
+  macports: name={{ item  }} state=present update_cache=yes
+  with_items:
+      - wget
+      - curl
+      - htop
+      - tree
+      - nmap
+      - bash-completion
+      - git-core
+      - rsync
+      - ruby19
+
+- name: Install pip
+  command: easy_install pip
+
+- name: Install all the CLI used day by day
+  pip: name={{ item  }}
+  with_items:
+      - python-novaclient
+      - rackspace-novaclient
+      - awscli
+      - httpie

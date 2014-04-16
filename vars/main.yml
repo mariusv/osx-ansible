@@ -1,0 +1,11 @@
+ports_version: 
+git_config:
+
+# Nova config
+username:
+tenant_name:
+auth_system:
+password:
+auth_url:
+region_name:
+no_cache:

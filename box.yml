@@ -1,0 +1,4 @@
+---
+ - hosts: delirium
+   roles:
+   - mac
